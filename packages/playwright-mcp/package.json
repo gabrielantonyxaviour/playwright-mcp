@@ -1,5 +1,5 @@
 {
-  "name": "playwright-mcp-sessions",
+  "name": "playwright-sessions",
   "version": "0.1.0",
   "description": "Playwright MCP with persistent named sessions — save/restore browser auth, clone sessions, manage multiple isolated contexts. Fork of microsoft/playwright-mcp.",
   "type": "module",
@@ -52,6 +52,6 @@
     "typescript": "^5.8.0"
   },
   "bin": {
-    "playwright-mcp-sessions": "dist/index.js"
+    "playwright-sessions": "dist/index.js"
   }
 }
