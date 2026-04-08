@@ -5,9 +5,9 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gabrielantonyxaviour/playwright-mcp.git"
+    "url": "git+https://github.com/gabrielantonyxaviour/playwright-sessions.git"
   },
-  "homepage": "https://github.com/gabrielantonyxaviour/playwright-mcp",
+  "homepage": "https://github.com/gabrielantonyxaviour/playwright-sessions",
   "engines": {
     "node": ">=18"
   },
