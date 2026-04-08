@@ -54,6 +54,10 @@ session_clone { sourceSessionId: "my-account", name: "test-copy" }
 
 Saved sessions live in `~/.playwright-sessions/` with a `manifest.json` describing which services each session is authenticated with. AI agents read this to pick the right session automatically.
 
+### Upstream tracking
+
+Session management is proposed upstream: [microsoft/playwright-mcp#1530](https://github.com/microsoft/playwright-mcp/issues/1530)
+
 ---
 
 *Everything below is from the original [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) README.*
