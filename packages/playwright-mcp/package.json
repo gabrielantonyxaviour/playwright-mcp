@@ -1,42 +1,51 @@
 {
-  "name": "@playwright/mcp",
-  "version": "0.0.70",
-  "description": "Playwright Tools for MCP",
+  "name": "playwright-mcp-sessions",
+  "version": "0.1.0",
+  "description": "Playwright MCP with persistent named sessions — save/restore browser auth, clone sessions, manage multiple isolated contexts. Fork of microsoft/playwright-mcp.",
+  "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/microsoft/playwright-mcp.git"
+    "url": "git+https://github.com/gabrielantonyxaviour/playwright-mcp.git"
   },
-  "homepage": "https://playwright.dev",
+  "homepage": "https://github.com/gabrielantonyxaviour/playwright-mcp",
   "engines": {
     "node": ">=18"
   },
   "author": {
-    "name": "Microsoft Corporation"
+    "name": "Gabriel Antony Xavier"
   },
   "license": "Apache-2.0",
-  "mcpName": "io.github.microsoft/playwright-mcp",
+  "keywords": [
+    "playwright",
+    "mcp",
+    "sessions",
+    "browser-automation",
+    "claude",
+    "ai"
+  ],
   "scripts": {
-    "lint": "node update-readme.js",
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
     "test": "playwright test",
-    "ctest": "playwright test --project=chrome",
-    "ftest": "playwright test --project=firefox",
-    "wtest": "playwright test --project=webkit",
-    "dtest": "MCP_IN_DOCKER=1 playwright test --project=chromium-docker",
-    "build": "echo OK",
-    "npm-publish": "npm run lint && npm run test && npm publish"
+    "prepublishOnly": "npm run build"
   },
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./index.d.ts",
-      "default": "./index.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "dependencies": {
-    "playwright": "1.60.0-alpha-1775258971000",
-    "playwright-core": "1.60.0-alpha-1775258971000"
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "playwright": "^1.52.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
   },
   "bin": {
-    "playwright-mcp": "cli.js"
+    "playwright-mcp-sessions": "dist/index.js"
   }
 }

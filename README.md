@@ -1,3 +1,65 @@
+# playwright-mcp-sessions
+
+> **Fork of [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)** — adds persistent named session management on top of the official Playwright MCP tool set.
+
+## What's added in this fork
+
+This fork extends Playwright MCP with a **session layer**: named, persistent browser contexts that survive across Claude Code restarts. Every existing browser tool (`browser_navigate`, `browser_click`, `browser_snapshot`, etc.) now accepts an optional `sessionId` parameter.
+
+### New session tools
+
+| Tool | What it does |
+|------|-------------|
+| `session_create` | Create a named isolated browser context (optionally restore saved auth) |
+| `session_list` | List all active sessions with URL, title, idle time |
+| `session_clone` | Clone a session's cookies into a new context |
+| `session_save` | Persist cookies + localStorage to `~/.playwright-sessions/` |
+| `session_list_saved` | List saved sessions with auto-detected auth services |
+| `session_switch` | Change the default session |
+| `session_close` | Destroy a session |
+| `session_storage_state` | Export raw storage state as JSON |
+| `session_tag` | Manually label auth on a saved session |
+| `session_delete_saved` | Delete a saved session from disk |
+
+### Getting started
+
+```bash
+npx playwright-mcp-sessions
+```
+
+Or with Claude Code:
+```bash
+claude mcp add playwright-sessions npx playwright-mcp-sessions
+```
+
+### Session workflow
+
+```
+# Create a named session and log in
+session_create { name: "my-account" }
+browser_navigate { url: "https://github.com", sessionId: "my-account" }
+# ... log in manually ...
+
+# Save the auth for next time
+session_save { sessionId: "my-account" }
+
+# Next session — restore without re-logging in
+session_create { name: "my-account", restore: true }
+
+# Clone for parallel testing
+session_clone { sourceSessionId: "my-account", name: "test-copy" }
+```
+
+### Session manifest
+
+Saved sessions live in `~/.playwright-sessions/` with a `manifest.json` describing which services each session is authenticated with. AI agents read this to pick the right session automatically.
+
+---
+
+*Everything below is from the original [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) README.*
+
+---
+
 ## Playwright MCP
 
 A Model Context Protocol (MCP) server that provides browser automation capabilities using [Playwright](https://playwright.dev). This server enables LLMs to interact with web pages through structured accessibility snapshots, bypassing the need for screenshots or visually-tuned models.
